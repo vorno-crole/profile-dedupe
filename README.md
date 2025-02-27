@@ -1,6 +1,8 @@
 # Salesforce Profile Converter, Validator and Deduplicator
 by vc@vaughancrole.com
 
+Currently supports Salesforce Profile, Permission Set and CustomLabel XML files.
+
 instructions coming soon
 
 ## Install
