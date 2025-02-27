@@ -47,7 +47,7 @@ Encoding force-app/main/default/profiles/Admin.profile-meta.xml     to force-app
 Encode time taken: 2
 ```
 
-This created a deduplicated CSV file.
+This created a alphabeticalised deduplicated CSV file.
 
 #### Convert the CSV file format back to Salesforce XML
 
@@ -58,6 +58,23 @@ This created a deduplicated CSV file.
 by vc@vaughancrole.com
 
 File type: Profile
+Decoding force-app/main/default/profiles/Admin.profile-meta.xml.csv to force-app/main/default/profiles/Admin.profile-meta.xml2
+Decode time taken: 0
+```
+
+#### Round Trip: XML to CSV to XML
+
+Convert XML to alphabeticalised deduplicated CSV, then back to XML
+
+```shell
+~/Documents/GitHub/profile-dedupe/dedupe.sh -m force-app/main/default/profiles/Admin.profile-meta.xml --both --replace-xml --remove-csv
+
+*** Profile/Permission Set/Custom Label Deduplication script v1.0
+by vc@vaughancrole.com
+
+File type: Profile
+Encoding force-app/main/default/profiles/Admin.profile-meta.xml     to force-app/main/default/profiles/Admin.profile-meta.xml.csv
+Encode time taken: 1
 Decoding force-app/main/default/profiles/Admin.profile-meta.xml.csv to force-app/main/default/profiles/Admin.profile-meta.xml2
 Decode time taken: 0
 ```
