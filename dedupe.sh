@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #!/usr/local/bin/bash
 
 SF_METAFILE="force-app/main/default/profiles/Admin.profile-meta.xml"
