@@ -102,7 +102,7 @@ Clone this repo to your machine, and link the folder into your Salesforce reposi
 ```shell
 mkdir -p ~/Documents/GitHub
 cd ~/Documents/GitHub
-git clone https://github.com/vorno-crole/profile-dedupe.git
+git clone --depth 1 https://github.com/vorno-crole/profile-dedupe.git
 ```
 
 ## How To Use
