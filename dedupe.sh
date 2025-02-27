@@ -226,6 +226,7 @@ fi
 if [[ ${MODE} == "DECODE" || ${MODE} == "BOTH" ]]; then
 	SECONDS=0
 	echo "Decoding ${SF_METAFILE}.csv to ${SF_METAFILE}2"
+	sort -u -o "${SF_METAFILE}.csv" "${SF_METAFILE}.csv"
 
 	META_KEY_0="${DECODE_KEY}"
 	YQ_CMD="sort_keys(.[])"
