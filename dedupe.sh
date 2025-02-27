@@ -85,15 +85,18 @@ SORT_KEYS=""
 			META_TYPE="Profile"
 			DECODE_KEY="Profile"
 			source ${SCR_DIR}/profileKeys.sh
+
 		elif grep -qF '.permissionset-meta.xml'  <<< ${META_FILENAME}; then
 			META_TYPE="PermSet"
 			DECODE_KEY="PermissionSet"
 			source ${SCR_DIR}/permSetKeys.sh
+
 		elif grep -qF '.labels-meta.xml'  <<< ${META_FILENAME}; then
 			META_TYPE="Label"
 			DECODE_KEY="CustomLabels"
 			SORT_KEYS="fullName"
 			source ${SCR_DIR}/labelKeys.sh
+
 		else
 			echo -e "Unknown Metadata file type: ${META_FILENAME}";
 			exit 1;
@@ -146,18 +149,18 @@ if [[ ${MODE} == "ENCODE" || ${MODE} == "DUPE" || ${MODE} == "BOTH" ]]; then
 		TYPE="$(jq -r 'type' <<< "$key_values")"
 		# echo $TYPE
 
-		if [[ $TYPE == 'string' ]]; then 
+		if [[ $TYPE == 'string' ]]; then
 			# echo "String: single value of key ${META_KEY_1}."
 			echo "${META_KEY_1}:$key_values" >> "${OUT_FILE}"
 			continue;
 
-		elif [[ $TYPE == 'array' ]]; then 
+		elif [[ $TYPE == 'array' ]]; then
 
-			# Check type of first element 
+			# Check type of first element
 			TYPE2="$(jq -rc 'first | type' <<< "$key_values")"
 
-			# if a string, assume is duplication 
-			if [[ $TYPE2 == 'string' ]]; then 
+			# if a string, assume is duplication
+			if [[ $TYPE2 == 'string' ]]; then
 
 				# duplication of key, multiple strings
 				jq -c '.[]' <<< "$key_values" | awk -v metakey="${META_KEY_1}" '{print metakey":" $0}' >> "${OUT_FILE}"
@@ -167,7 +170,7 @@ if [[ ${MODE} == "ENCODE" || ${MODE} == "DUPE" || ${MODE} == "BOTH" ]]; then
 		fi
 
 		# Check for array or not - enforce object inside array
-		if [[ $TYPE == 'object' ]]; then 
+		if [[ $TYPE == 'object' ]]; then
 			key_values="[${key_values}]";
 		fi
 
@@ -258,7 +261,7 @@ if [[ ${MODE} == "DECODE" || ${MODE} == "BOTH" ]]; then
 
 	# cat "${SF_METAFILE}2";
 
-	if [[ "${REPLACE}" == "TRUE" ]]; then 
+	if [[ "${REPLACE}" == "TRUE" ]]; then
 		mv "${SF_METAFILE}2" "${SF_METAFILE}";
 	fi
 

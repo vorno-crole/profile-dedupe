@@ -1,5 +1,6 @@
 # Salesforce Profile Converter, Validator and Deduplicator
-by vc@vaughancrole.com
+by vc@vaughancrole.com  
+([Find me at LinkedIn](https://www.linkedin.com/in/vaughancrole/))  
 
 Currently supports Salesforce Profile, Permission Set and CustomLabel XML files.
 
@@ -17,7 +18,7 @@ And a solution to helping Git overcome the problems stemming from tracking and m
 Take the Profile metadata as an example:  
 `force-app/main/default/profiles/Admin.profile-meta.xml`
 
-After a few projects, this file fast becomes a mess, difficult to work with and practically "broken" when tracked in Git. This file can become unsequenced (not alphabetical), with duplicate keys and other errors.
+After a few projects this file fast becomes a mess, difficult to work with and practically "broken" when tracked in Git. This file can become unsequenced (not alphabetical), with duplicate keys and other errors.
 
 Now, these breakages are not easily seen or felt - most times it can still deploy and load into Salesforce (mostly) without complaint.
 
