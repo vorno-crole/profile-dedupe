@@ -58,7 +58,7 @@ SORT_KEYS=""
 				--replace-xml) REPLACE="TRUE";;
 				--remove-csv) REMOVE_CSVs="TRUE";;
 
-				-h | --help)
+				-h | --help | -v | --version)
 					title
 					usage
 					exit 0;;
