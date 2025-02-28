@@ -104,6 +104,8 @@ Clone this repo to your machine, and link the folder into your Salesforce reposi
 $ mkdir -p ~/Documents/GitHub
 $ cd ~/Documents/GitHub
 $ git clone --depth 1 https://github.com/vorno-crole/profile-dedupe.git
+$ cd $(basename $_ .git)
+$ export PATH="${PATH}:$(pwd)"
 ```
 
 ## How To Use
@@ -112,13 +114,13 @@ $ git clone --depth 1 https://github.com/vorno-crole/profile-dedupe.git
 Run the `dedupe.sh` script with `--help` to get basic usage instructions
 
 ```shell
-$ ~/Documents/GitHub/profile-dedupe/dedupe.sh --help
+$ dedupe.sh --help
 
 *** Profile/Permission Set/Custom Label Deduplication script v1.0
 by vc@vaughancrole.com
 
 Usage:
-~/Documents/GitHub/profile-dedupe/dedupe.sh -m <profile-perm-set-or-label-meta-file.xml> (--encode | --decode | --both | --check-duplicates) (--replace-xml) (--remove-csv)
+dedupe.sh -m <profile-perm-set-or-label-meta-file.xml> (--encode | --decode | --both | --check-duplicates) (--replace-xml) (--remove-csv)
 ```
 
 ### Convert Salesforce XML from and to CSV
@@ -126,7 +128,7 @@ Usage:
 #### Convert a Salesforce Profile XML into a (kind of) CSV file format for easier diff'ing and human editing.
 
 ```shell
-$ ~/Documents/GitHub/profile-dedupe/dedupe.sh -m force-app/main/default/profiles/Admin.profile-meta.xml --encode
+$ dedupe.sh -m force-app/main/default/profiles/Admin.profile-meta.xml --encode
 
 *** Profile/Permission Set/Custom Label Deduplication script v1.0
 by vc@vaughancrole.com
@@ -141,7 +143,7 @@ This created a alphabeticalised deduplicated CSV file.
 #### Convert the CSV file format back to Salesforce XML
 
 ```shell
-$ ~/Documents/GitHub/profile-dedupe/dedupe.sh -m force-app/main/default/profiles/Admin.profile-meta.xml --decode --replace-xml
+$ dedupe.sh -m force-app/main/default/profiles/Admin.profile-meta.xml --decode --replace-xml
 
 *** Profile/Permission Set/Custom Label Deduplication script v1.0
 by vc@vaughancrole.com
@@ -156,7 +158,7 @@ Decode time taken: 0
 Convert XML to alphabeticalised deduplicated CSV, then back to XML
 
 ```shell
-$ ~/Documents/GitHub/profile-dedupe/dedupe.sh -m force-app/main/default/profiles/Admin.profile-meta.xml --both --replace-xml --remove-csv
+$ dedupe.sh -m force-app/main/default/profiles/Admin.profile-meta.xml --both --replace-xml --remove-csv
 
 *** Profile/Permission Set/Custom Label Deduplication script v1.0
 by vc@vaughancrole.com
@@ -172,7 +174,7 @@ Decode time taken: 0
 
 
 ```shell
-$ ~/Documents/GitHub/profile-dedupe/dedupe.sh -m force-app/main/default/profiles/Admin.profile-meta.xml --check-duplicates
+$ dedupe.sh -m force-app/main/default/profiles/Admin.profile-meta.xml --check-duplicates
 
 *** Profile/Permission Set/Custom Label Deduplication script v1.0
 by vc@vaughancrole.com
