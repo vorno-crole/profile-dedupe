@@ -94,6 +94,8 @@ In advanced usage, we can inspect a change in Git (be it a single commit, or two
 
 ## How to Install
 
+### Mac
+
 Ensure you have the dependencies installed
 ```shell
 $ brew install jq yq
@@ -107,6 +109,12 @@ $ git clone --depth 1 https://github.com/vorno-crole/profile-dedupe.git
 $ cd $(basename $_ .git)
 $ export PATH="${PATH}:$(pwd)"
 ```
+
+### Windows - Gitbash
+Coming soon
+
+### Linux
+Coming soon
 
 ## How To Use
 
