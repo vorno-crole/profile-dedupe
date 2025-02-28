@@ -105,6 +105,7 @@ SORT_KEYS=""
 # setup
 
 title
+echo -e "File: ${SF_METAFILE}"
 echo -e "File type: ${META_TYPE}"
 
 
@@ -115,7 +116,7 @@ if [[ ${MODE} == "ENCODE" || ${MODE} == "DUPE" || ${MODE} == "BOTH" ]]; then
 	OUT_FILE="${SF_METAFILE}.csv"
 
 	if [[ ${MODE} == "DUPE" ]]; then
-		echo "Checking ${SF_METAFILE} for duplicates"
+		echo "Checking for duplicates"
 		OUT_FILE="${SF_METAFILE}.dupes.csv"
 	else
 		echo "Encoding ${SF_METAFILE}     to ${OUT_FILE}"
