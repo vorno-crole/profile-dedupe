@@ -6,7 +6,7 @@ MODE="BOTH"
 REPLACE="FALSE"
 REMOVE_CSVs="FALSE"
 SORT_KEYS=""
-
+LC_ALL=C
 
 # setup
 	SECONDS=0
@@ -197,11 +197,11 @@ if [[ ${MODE} == "ENCODE" || ${MODE} == "DUPE" || ${MODE} == "BOTH" ]]; then
 
 	# UNIQ it
 	if [[ ${MODE} != "DUPE" ]]; then
-		sort -u -o "${OUT_FILE}" "${OUT_FILE}"
+		LC_COLLATE=C sort -u -o "${OUT_FILE}" "${OUT_FILE}"
 
 	else
 		# check dupes
-		sort "${OUT_FILE}" | uniq -cd > "${OUT_FILE}2"
+		LC_COLLATE=C sort "${OUT_FILE}" | uniq -cd > "${OUT_FILE}2"
 
 		EXIT_CODE="0"
 
@@ -230,7 +230,7 @@ fi
 if [[ ${MODE} == "DECODE" || ${MODE} == "BOTH" ]]; then
 	SECONDS=0
 	echo "Decoding ${SF_METAFILE}.csv to ${SF_METAFILE}2"
-	sort -u -o "${SF_METAFILE}.csv" "${SF_METAFILE}.csv"
+	LC_COLLATE=C sort -u -o "${SF_METAFILE}.csv" "${SF_METAFILE}.csv"
 
 	META_KEY_0="${DECODE_KEY}"
 	YQ_CMD="sort_keys(.[])"
