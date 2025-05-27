@@ -47,7 +47,7 @@ I got tired of spending many long hours dealing with a sucky file format, mergin
 
 ## The Solution
 
-So what did I do? I wrote a script to dynamically transform the XML file into a format that works best with Git, and provides better capability for insepction, analysis, editing and tracking.
+So what did I do? I wrote a script to dynamically transform the XML file into a format that works best with Git, and provides better capability for inspection, analysis, editing and tracking.
 
 Characteristics include:
 
@@ -146,7 +146,7 @@ Encoding force-app/main/default/profiles/Admin.profile-meta.xml     to force-app
 Encode time taken: 2
 ```
 
-This created a alphabeticalised deduplicated CSV file.
+This creates an alphabeticalised deduplicated CSV file.
 
 #### Convert the CSV file format back to Salesforce XML
 
