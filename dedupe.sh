@@ -58,6 +58,8 @@ LC_ALL=C
 				-c | --check-duplicates) MODE="DUPE";;
 				--replace-xml) REPLACE="TRUE";;
 				--remove-csv) REMOVE_CSVs="TRUE";;
+				--randr | -r) REMOVE_CSVs="TRUE"
+							  REPLACE="TRUE";;
 
 				-h | --help | -v | --version)
 					title
