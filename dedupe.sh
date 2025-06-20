@@ -154,6 +154,7 @@ if [[ ${MODE} == "ENCODE" || ${MODE} == "DUPE" || ${MODE} == "BOTH" ]]; then
 
 		if [[ $TYPE == 'string' ]]; then
 			# echo "String: single value of key ${META_KEY_1}."
+			key_values="$(sed 's/:/\&colon;/i' <<< "$key_values")"
 			echo "${META_KEY_1}:$key_values" >> "${OUT_FILE}"
 			continue;
 
@@ -169,7 +170,6 @@ if [[ ${MODE} == "ENCODE" || ${MODE} == "DUPE" || ${MODE} == "BOTH" ]]; then
 				jq -c '.[]' <<< "$key_values" | awk -v metakey="${META_KEY_1}" '{print metakey":" $0}' >> "${OUT_FILE}"
 				continue;
 			fi
-
 		fi
 
 		# Check for array or not - enforce object inside array
@@ -256,6 +256,7 @@ if [[ ${MODE} == "DECODE" || ${MODE} == "BOTH" ]]; then
 	echo "</${META_KEY_0}>" >> "${SF_METAFILE}2";
 
 	# DTD entities
+	sed -i '' 's/&amp;colon;/:/gi' "${SF_METAFILE}2"
 	sed -i '' 's/&#34;/\&quot;/gi' "${SF_METAFILE}2"
 	sed -i '' 's/&#38;/\&amp;/gi'  "${SF_METAFILE}2"
 	sed -i '' 's/&#39;/\&apos;/gi' "${SF_METAFILE}2"
