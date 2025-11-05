@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#!/usr/local/bin/bash
 
 SF_METAFILE="force-app/main/default/profiles/Admin.profile-meta.xml"
 MODE="BOTH"
@@ -10,6 +9,7 @@ LC_ALL=C
 
 # setup
 	SECONDS=0
+	set -e
 
 	YLW="\033[33;1m"
 	GRN="\033[32;1m"
@@ -77,7 +77,14 @@ LC_ALL=C
 
 		if [[ "${SF_METAFILE}" == "" ]]; then
 			title
-			echo -e "${RED}*** Error: ${RES}SF_METAFILE not specified."
+			echo -e "${RED}*** Error: ${RES}Metadata file not specified."
+			usage
+			exit 1
+		fi
+
+		if [ ! -f "$SF_METAFILE" ]; then
+			title
+			echo -e "${RED}*** Error: ${RES}Metadata file not found."
 			usage
 			exit 1
 		fi
