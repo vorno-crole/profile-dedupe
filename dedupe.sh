@@ -43,6 +43,8 @@ LC_ALL=C
 			echo -e "${WHT}$0${RES} -m <profile-perm-set-or-label-meta-file.xml> (--encode | --decode | --both | --check-duplicates) (--replace-xml) (--remove-csv)"
 		}
 		export -f usage
+
+		sedi=(-i) && [ "$(uname)" == "Darwin" ] && sedi=(-i '')
 	# functions
 
 
@@ -256,19 +258,19 @@ if [[ ${MODE} == "DECODE" || ${MODE} == "BOTH" ]]; then
 	<${META_KEY_0} xmlns="http://soap.sforce.com/2006/04/metadata">
 	EOF
 
-	awk -F'[{}]' '{if ($0 ~ /{/) { print "{\""$1"\":{" $2 "}}" } else { split($0, arr, ":"); print "{\"" arr[1] "\":" arr[2] "}" }};' "${SF_METAFILE}.csv" | \
+	awk -F'[{}]' '{if ($0 ~ /\{/) { print "{\""$1"\":{" $2 "}}" } else { split($0, arr, ":"); print "{\"" arr[1] "\":" arr[2] "}" }};' "${SF_METAFILE}.csv" | \
 	yq -p=j -o=x -I=4 "${YQ_CMD}" | \
 	awk '{print "    "$0}' >> "${SF_METAFILE}2";
 
 	echo "</${META_KEY_0}>" >> "${SF_METAFILE}2";
 
 	# DTD entities
-	sed -i '' 's/&amp;colon;/:/gi' "${SF_METAFILE}2"
-	sed -i '' 's/&#34;/\&quot;/gi' "${SF_METAFILE}2"
-	sed -i '' 's/&#38;/\&amp;/gi'  "${SF_METAFILE}2"
-	sed -i '' 's/&#39;/\&apos;/gi' "${SF_METAFILE}2"
-	sed -i '' 's/&#60;/\&lt;/gi'   "${SF_METAFILE}2"
-	sed -i '' 's/&#62;/\&gt;/gi'   "${SF_METAFILE}2"
+	sed "${sedi[@]}" 's/&amp;colon;/:/gi' "${SF_METAFILE}2"
+	sed "${sedi[@]}" 's/&#34;/\&quot;/gi' "${SF_METAFILE}2"
+	sed "${sedi[@]}" 's/&#38;/\&amp;/gi'  "${SF_METAFILE}2"
+	sed "${sedi[@]}" 's/&#39;/\&apos;/gi' "${SF_METAFILE}2"
+	sed "${sedi[@]}" 's/&#60;/\&lt;/gi'   "${SF_METAFILE}2"
+	sed "${sedi[@]}" 's/&#62;/\&gt;/gi'   "${SF_METAFILE}2"
 
 	# cat "${SF_METAFILE}2";
 
